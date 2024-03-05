@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.TransferMapper">
+    <select id="selectTransferPage" resultType="Transfer">
+        select * from transfer
+    </select>
+    <select id="selectTransferByID" resultType="Transfer">
+        select * from transfer
+        <where>
+            account_in_id = #{id} or account_out_id = #{id}
+        </where>
+    </select>
+    <select id="selectTransferWeek" resultType="Transfer">
+        select * from transfer
+        <where>
+            (account_in_id = #{id} or account_out_id = #{id})
+            and date(`timestamp`) >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+        </where>
+        order by `timestamp` desc
+    </select>
+    <select id="selectTransferMonth" resultType="Transfer">
+        select * from transfer
+        <where>
+            (account_in_id = #{id} or account_out_id = #{id})
+            and date(`timestamp`) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+        </where>
+        order by `timestamp` desc
+    </select>
+
+    <select id="selectTransferListByID" resultType="Transfer">
+        select * from transfer
+        <where>
+            account_in_id = #{id} or account_out_id = #{id}
+        </where>
+    </select>
+    <select id="selectTransferListByIDWeek" resultType="Transfer">
+        select * from transfer
+        <where>
+            (account_in_id = #{id} or account_out_id = #{id})
+            and date(`timestamp`) >= DATE_SUB(CURDATE(), INTERVAL 1 WEEK)
+        </where>
+    </select>
+    <select id="selectTransferListByIDMonth" resultType="Transfer">
+        select * from transfer
+        <where>
+            (account_in_id = #{id} or account_out_id = #{id})
+            and date(`timestamp`) >= DATE_SUB(CURDATE(), INTERVAL 1 MONTH)
+        </where>
+    </select>
+</mapper>

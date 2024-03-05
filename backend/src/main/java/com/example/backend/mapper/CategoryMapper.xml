@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.CategoryMapper">
+    <select id="selectCategoryPage" resultType="Category">
+        select * from category
+        <where>
+            shopID = #{shopID}
+        </where>
+    </select>
+    <select id="selectCateByShop" resultType="Category">
+        select * from category
+        <where>
+            shopID = #{shopID}
+            and ( `state` = 1 or `state` = 3 or `state` = 6 )
+        </where>
+    </select>
+</mapper>

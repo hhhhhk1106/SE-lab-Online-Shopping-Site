@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.ShoppingCartMapper">
+    <select id="selectShoppingCartPage" resultType="ShoppingCart">
+        select * from shoppingcart
+        <where>
+            userid = #{ownerid}
+        </where>
+    </select>
+    <select id="selectShoppingCartByCate" resultType="ShoppingCart">
+        select * from shoppingcart
+        <where>
+            categoryid = #{categoryID}
+        </where>
+    </select>
+</mapper>

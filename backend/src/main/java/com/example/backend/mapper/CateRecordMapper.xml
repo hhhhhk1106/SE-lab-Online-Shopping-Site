@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.CateRecordMapper">
+    <select id="selectCateRegisterPage" resultType="CateRecord">
+        select * from cateRecord
+        <where>
+            operation = "register"
+        </where>
+    </select>
+    <select id="selectCateUpdatePage" resultType="CateRecord">
+        select * from cateRecord
+        <where>
+            operation = "update"
+        </where>
+    </select>
+    <select id="selectCateOwnerPage" resultType="CateRecord">
+        select * from cateRecord
+        <where>
+            ownerid = #{ownerid}
+        </where>
+    </select>
+    <select id="selectCateSubsidyPage" resultType="CateRecord">
+        select * from cateRecord
+        <where>
+            operation = "subsidy"
+        </where>
+    </select>
+</mapper>

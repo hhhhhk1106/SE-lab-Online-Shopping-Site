@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.ShopMapper">
+    <select id="selectShopPage" resultType="Shop">
+        select * from shop
+        <where>
+            state > 0
+            <if test="keyword !=null and keyword !='' ">
+                or storename like CONCAT('%',#{keyword},'%')
+                or category like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectShopNewPage" resultType="Shop">
+        select * from shop
+        <where>
+            state = 0
+            <if test="keyword !=null and keyword !='' ">
+                or storename like CONCAT('%',#{keyword},'%')
+                or category like CONCAT('%',#{keyword},'%')
+            </if>
+        </where>
+    </select>
+    <select id="selectShopDeletePage" resultType="Shop">
+        select * from shop
+        <where>
+            state = 2 or state = 3
+        </where>
+    </select>
+    <select id="selectShopApplyPage" resultType="Shop">
+        select * from shop
+        <where>
+            state = 4
+        </where>
+    </select>
+    <select id="selectShopPageOwner" resultType="Shop">
+        select * from shop
+        <where>
+            ownerid = #{ownerid}
+        </where>
+    </select>
+</mapper>

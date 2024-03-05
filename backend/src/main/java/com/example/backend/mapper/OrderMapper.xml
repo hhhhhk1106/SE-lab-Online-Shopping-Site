@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.OrderMapper">
+    <select id="selectOrderPage" resultType="Order">
+        select * from `order`
+    </select>
+    <select id="selectOrderByID" resultType="Order">
+        select * from `order`
+        <where>
+            ownerid = #{ownerid}
+        </where>
+    </select>
+    <select id="selectOrderByShop" resultType="Order">
+        select o.* from `order` o, category ca
+        <where>
+            ca.ownerid = #{merchant}
+            and o.category_id = ca.id
+            and ( o.state = 1 or o.state = 6 )
+        </where>
+    </select>
+    <select id="selectAllOrderByShop" resultType="Order">
+        select o.* from `order` o, category ca
+        <where>
+            ca.ownerid = #{merchant}
+            and o.category_id = ca.id
+        </where>
+    </select>
+</mapper>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.backend.mapper.SubsidyMapper">
+    <select id="selectSubsidyPage" resultType="Subsidy">
+        select * from subsidy
+    </select>
+    <select id="selectSubsidyNowPage" resultType="Subsidy">
+        select * from subsidy
+        <where>
+            `state` = 1
+        </where>
+    </select>
+    <select id="checkSubsidy" resultType="Subsidy">
+        select * from subsidy
+        <where>
+            now() > end_time
+            and `state` = 1
+        </where>
+    </select>
+    <select id="selectSubsidyShop" resultType="Shop">
+        select * from shop
+        <where>
+            subsidy_id = #{subsidy_id}
+        </where>
+    </select>
+    <select id="selectSubsidyCate" resultType="Category">
+        select * from category
+        <where>
+            subsidy_id = #{subsidy_id}
+        </where>
+    </select>
+</mapper>
